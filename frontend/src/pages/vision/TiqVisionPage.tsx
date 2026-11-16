@@ -174,7 +174,7 @@ export default function TiqVisionPage() {
                     <div className="tiqfix-hero-icon" aria-hidden="true">👁️</div>
                     <div>
                         <h1 className="h2 mb-1 fw-bold">TiqVision — Show, Don't Type</h1>
-                        <p className="mb-0 opacity-75">Show us the error. We'll draft the ticket for you to review.</p>
+                        <p className="mb-0 opacity-75">Upload an error screenshot. When AI analysis is enabled, get recommended fixes and an automatically prepared ticket to review and submit.</p>
                     </div>
                 </div>
                 <ul className="tiqfix-promises list-unstyled d-flex flex-wrap gap-2 mt-3 mb-0">
@@ -266,7 +266,7 @@ export default function TiqVisionPage() {
                             <Card className="shadow-sm tiqfix-empty text-center">
                                 <Card.Body className="py-5">
                                     <div className="display-5 mb-2" aria-hidden="true">📸</div>
-                                    <h2 className="h5">Your draft ticket will appear here</h2>
+                                    <h2 className="h5">Your recommended fixes and ticket draft appear here</h2>
                                     <p className="text-muted mb-0 mx-auto" style={{ maxWidth: 440 }}>
                                         Upload a screenshot of the error or record your screen for five seconds. TiqVision reads the
                                         visible error and suggests a ticket and an approved fix. You stay in control.

@@ -64,10 +64,20 @@ Created as a hackathon project at Concordia, Tiqnest connects a React interface 
 | **Audit history** | Follow recorded ticket changes through a history timeline. |
 | **Admin dashboard** | Review incidents, ticket priorities, assignments and SLA summaries. |
 | **Role-based access** | Distinct employee and administrator experiences, with protected application routes and backend authentication. |
-| **TiqVision — prototype** | Explore screenshot-based triage and draft-ticket suggestions. AI integration exists in the code, but live screenshot analysis has not been verified. Availability depends on server-side provider configuration. Explicit demo fixtures are labeled as demo results. |
+| **TiqVision — prototype** | Upload an error screenshot for AI analysis, recommended troubleshooting and an automatically populated ticket draft. Review or edit the draft, then submit it to create the ticket. The public demo currently reports AI analysis as unconfigured; the workflow requires server-side provider credentials. Explicit demo fixtures are labeled as demo results. |
 | **Public landing page** | Responsive product overview, mobile navigation, illustrative ticket cards, team credits and role-aware calls to action. |
 
 The interface uses sage green, cream and pink accents, bold typography, glass-style cards, visible keyboard focus and reduced-motion support. The authenticated homepage also has a dismissible ticket illustration.
+
+## TiqVision: screenshot → recommended fix → ticket
+
+1. **Upload the error.** Attach a screenshot, or capture a short screen recording. Optional text adds context.
+2. **Analyze with AI.** When a provider is configured, TiqVision extracts the visible issue, suggests a possible cause and selects applicable approved troubleshooting remedies.
+3. **Prepare the ticket automatically.** The analysis populates a title, description, category, affected system and suggested priority.
+4. **Review and submit.** Edit the generated details if needed, then choose **Create IT ticket** or **Submit ticket**. Only this action saves a ticket; uploading or analyzing alone does not submit one.
+5. **Follow through.** Try the suggested TiqFix steps or track the created ticket. Related reports may be linked to an active incident.
+
+**Live demo status:** the deployed backend returned `aiConfigured: false` when checked on November 16, 2026. Screenshot analysis is therefore unavailable until an administrator configures the AI provider in Render. Text entry remains available. Recommendations are suggestions, not proof that an issue has been fixed.
 
 ## Deployment: three services, one application
 
@@ -275,7 +285,7 @@ Backend features are organized around users, tickets, incidents, SLA, audit hist
 
 ## Project scope and next steps
 
-Tiqnest is a hackathon portfolio project with a public demo. Shared test data can change, and the demo accounts are intentionally discoverable. TiqVision remains a prototype until its provider configuration and deployed analysis flow are verified.
+Tiqnest is a hackathon portfolio project with a public demo. Shared test data can change, and the demo accounts are intentionally discoverable. TiqVision remains labeled as a prototype: the public Render API currently reports `aiConfigured: false`. Live screenshot analysis must be enabled and verified before it can be advertised as available on the hosted demo.
 
 Potential next steps include stronger production account management, broader end-to-end coverage, validated screenshot triage and continued accessibility testing.
 
@@ -284,6 +294,8 @@ Potential next steps include stronger production account management, broader end
 **Ilian Adeleke · Arushi Naik · Malick Konate · Jacky Bolap**
 
 Built at Hackathon Concordia to reimagine everyday IT support.
+
+Explore more web, backend, mobile and game projects in [Arushi Naik’s portfolio](https://github.com/ArushiNaik).
 
 ---
 
