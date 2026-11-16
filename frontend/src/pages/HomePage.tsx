@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getCurrentUser, isAdmin } from '../services/auth';
 import './HomePage.css';
@@ -13,6 +14,7 @@ function Bolt({ className }: { className: string }) {
 }
 
 export default function HomePage() {
+    const [ticketVisible, setTicketVisible] = useState(true);
     const currentUser = getCurrentUser();
     const admin = isAdmin();
 
@@ -43,16 +45,18 @@ export default function HomePage() {
                     <span className="hero-line hero-line-small">no fuss</span>
                 </h1>
 
-                <div className="hero-ticket" aria-hidden="true">
+                {ticketVisible && <div className="hero-ticket">
                     <div className="hero-ticket-top">
-                        <span>TIQ · 042</span>
-                        <span className="hero-ticket-dot" />
+                        <span aria-hidden="true">TIQ · 042</span>
+                        <button type="button" className="hero-ticket-dismiss" aria-label="Dismiss ticket illustration" onClick={() => setTicketVisible(false)}>×</button>
                     </div>
+                    <div aria-hidden="true">
                     <div className="hero-ticket-title">VPN down</div>
                     <div className="hero-ticket-meta">5 reports · grouped</div>
                     <div className="hero-ticket-bar"><span /></div>
                     <div className="hero-ticket-foot">⏱ 12m left</div>
-                </div>
+                    </div>
+                </div>}
             </div>
 
             <p className="hero-subtitle">

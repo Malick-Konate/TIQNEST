@@ -1,226 +1,296 @@
-<p align="center">
-  <img src="docs/assets/banner.svg" alt="IT Helpdesk Platform" width="100%">
-</p>
+<div align="center">
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white" alt="Java 21">
-  <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?logo=springboot&logoColor=white" alt="Spring Boot">
-  <img src="https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB" alt="React">
-  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL">
-  <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" alt="Docker">
-  <img src="https://img.shields.io/badge/Hackathon-2026-8A2BE2" alt="Hackathon 2026">
-</p>
+# TIQNEST ✳
+### IT support that just works.
 
-<p align="center">
-  <a href="#-features">Features</a> ·
-  <a href="#-getting-started">Getting started</a> ·
-  <a href="#-demo-accounts">Demo accounts</a> ·
-  <a href="#-api-overview">API</a> ·
-  <a href="#-team">Team</a>
-</p>
+**Report it. Work through it. Get back to your day.**
+
+A connected help desk for employees and the IT teams behind them.
+
+[**Explore the live website ↗**](https://tiqnest.netlify.app/) · [**Try the demo ↗**](https://tiqnest.netlify.app/login)
+
+![React](https://img.shields.io/badge/React_18-33453a?logo=react&logoColor=f4ecd6)
+![TypeScript](https://img.shields.io/badge/TypeScript-33453a?logo=typescript&logoColor=f4ecd6)
+![Java](https://img.shields.io/badge/Java_21-33453a?logo=openjdk&logoColor=f4ecd6)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-33453a?logo=springboot&logoColor=f4ecd6)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-33453a?logo=postgresql&logoColor=f4ecd6)
+
+**Frontend on Netlify · Backend on Render · Database on Neon**
+
+</div>
 
 ---
 
-## 💡 About
+## Start here: recruiter demo
 
-Small companies often have no IT department. Problems arrive as scattered messages, and when the wifi goes down, twelve people report the same thing and twelve separate tickets pile up.
+Open **[tiqnest.netlify.app/login](https://tiqnest.netlify.app/login)** and use a demo account below. No signup is required.
 
-This platform turns scattered reports into **one clear picture**: similar tickets are grouped into a single incident ("12 people affected, 2nd floor"), every ticket has a deadline that counts down, and every change is recorded.
-
-Built during a one-day hackathon. All demo data is fake.
-
-## ✨ Features
-
-<table>
-  <tr>
-    <td width="33%" valign="top">
-      <h3>🎫 Ticketing</h3>
-      Create, list and update tickets with status, priority and assignee.
-    </td>
-    <td width="33%" valign="top">
-      <h3>🧩 Incident clustering</h3>
-      Similar tickets are grouped into one incident with an affected count.
-    </td>
-    <td width="33%" valign="top">
-      <h3>⏱️ SLA timers</h3>
-      Deadlines by priority, shown as a countdown that turns orange, then red.
-    </td>
-  </tr>
-  <tr>
-    <td width="33%" valign="top">
-      <h3>🕓 History timeline</h3>
-      Every change to a ticket is recorded and shown as a timeline.
-    </td>
-    <td width="33%" valign="top">
-      <h3>📊 Admin dashboard</h3>
-      Live view of incidents, tickets and SLA status in one place.
-    </td>
-    <td width="33%" valign="top">
-      <h3>🔐 Roles</h3>
-      Login with two roles: <code>EMPLOYEE</code> and <code>ADMIN</code>.
-    </td>
-  </tr>
-</table>
-
-## 🧰 Tech stack
-
-| Layer | Technology |
-|---|---|
-| Backend | Java 21, Spring Boot, Spring Data JPA, MapStruct, Lombok |
-| Frontend | React with Vite (TypeScript, kept simple) |
-| Database | PostgreSQL |
-| Tooling | Gradle, Docker Compose, pgAdmin |
-
-## 🏗️ Architecture
-
-```mermaid
-flowchart LR
-    A([Employee / Admin]) --> B[React frontend]
-    B -->|REST + token| C[Spring Boot API]
-    C --> D[(PostgreSQL)]
-```
-
-The backend is one Spring Boot application split into feature modules:
-
-| Module | Responsibility |
-|---|---|
-| `user` | Login, roles and users |
-| `ticket` | Creating and updating tickets |
-| `incident` | Grouping tickets into incidents |
-| `sla` | Deadlines and timers |
-| `audit` | Change history |
-| `config` | CORS, authentication filter, shared configuration |
-
-## 🚀 Getting started
-
-**Prerequisites:** Java 21, Node.js 20 or newer, Docker Desktop.
-
-### 1. Clone and configure
-
-```bash
-git clone https://github.com/Malick-Konate/hackathon-2026.git
-cd hackathon-2026
-cp .env.example .env        # optional: change the values in .env
-```
-
-### 2. Start the database
-
-```bash
-docker compose up -d        # starts PostgreSQL (db) and pgAdmin, not the app
-```
-
-| Service | What it is | URL / port |
+| Experience | Email | Password |
 |---|---|---|
-| `db` | PostgreSQL 16 | `localhost:5434`, database `ItHelpDesk` |
-| `pgadmin` | Web UI to browse the database | http://localhost:9000 |
-| `app` | The Spring Boot app in a container (optional) | http://localhost:8080 |
+| **IT administrator** | `Christine@demo.com` | `pwd` |
+| **Employee** | `Bahman@demo.com` | `pwd` |
+| **Employee — second perspective** | `Amin@demo.com` | `pwd` |
 
-In pgAdmin, add a server with host `db` and port `5432`. The credentials are in `docker-compose.yml`.
+These are intentionally public demo credentials, defined in [`backend/src/main/resources/data.sql`](backend/src/main/resources/data.sql). They are for exploring the project with fictional data, not personal or sensitive information. The hosted database may change as visitors try the app; the account values above are verified against the seed file rather than a fresh live login.
 
-### 3. Run the backend
+### A quick tour
 
-**While developing:** run `ItHelpDeskApplication` in IntelliJ, or from the repo root:
+1. **Meet the product.** Visit the [public homepage](https://tiqnest.netlify.app/) for the features, workflow and team story.
+2. **Try the employee experience.** Sign in as Bahman or Amin. Report a sample IT issue and follow its status on the Tickets page.
+3. **Explore TiqFix.** Review guided troubleshooting for common problems. You remain in control of the steps you take.
+4. **Switch perspectives.** Sign out, then sign in as Christine to explore the admin dashboard, ticket queue, priorities, incidents and user management.
+5. **Follow the bigger picture.** Review the outage banner and incident tools when related reports have formed an active incident.
 
-```bash
-./gradlew :backend:bootRun          # Windows: gradlew.bat :backend:bootRun
+If the backend is sleeping, the first request may take longer. Allow it time to wake up, then retry if necessary.
+
+---
+
+## Big ideas. Better IT days.
+
+IT problems interrupt work. Support requests get scattered across messages, employees repeat the same reports, and teams lose sight of which problems affect everyone.
+
+**Tiqnest brings ticket tracking, guided troubleshooting and incident detection into one connected platform.** Employees get a clear place to ask for help; administrators get a shared view of the work that needs attention.
+
+Created as a hackathon project at Concordia, Tiqnest connects a React interface to a Java REST API and a persistent PostgreSQL database.
+
+## What you can explore
+
+| Capability | What it does |
+|---|---|
+| **Smart ticket management** | Create support requests and follow status, priority, assignment and progress. |
+| **TiqFix — guided troubleshooting** | Explore IT-approved steps for issues such as VPN disconnections, printers, browser cache and connectivity. Commands do not run silently, and completing steps does not automatically prove a repair succeeded. |
+| **TiqRadar — incident detection** | Group related reports into shared incidents, surface active outages in a banner and give administrators a view of affected reports. |
+| **SLA visibility** | Show deadlines and whether tickets are on track, at risk or breached. Default targets are 1 hour for critical, 4 for high, 24 for medium and 72 for low priority. |
+| **Audit history** | Follow recorded ticket changes through a history timeline. |
+| **Admin dashboard** | Review incidents, ticket priorities, assignments and SLA summaries. |
+| **Role-based access** | Distinct employee and administrator experiences, with protected application routes and backend authentication. |
+| **TiqVision — prototype** | Explore screenshot-based triage and draft-ticket suggestions. AI integration exists in the code, but live screenshot analysis has not been verified. Availability depends on server-side provider configuration. Explicit demo fixtures are labeled as demo results. |
+| **Public landing page** | Responsive product overview, mobile navigation, illustrative ticket cards, team credits and role-aware calls to action. |
+
+The interface uses sage green, cream and pink accents, bold typography, glass-style cards, visible keyboard focus and reduced-motion support. The authenticated homepage also has a dismissible ticket illustration.
+
+## Deployment: three services, one application
+
+```text
+Employee or administrator
+          │
+          ▼
+NETLIFY — React + TypeScript frontend
+https://tiqnest.netlify.app
+          │ HTTPS REST requests + session token
+          ▼
+RENDER — Java / Spring Boot backend
+Authentication · Tickets · TiqFix · Incidents · SLA · Audit
+          │ PostgreSQL connection
+          ▼
+NEON — Managed PostgreSQL database
+Users · Tickets · Incidents · Application records
 ```
 
-**For the demo (everything in Docker):**
+| Layer | Hosting | Responsibility |
+|---|---|---|
+| **Frontend** | **Netlify** | Serves the Vite production build and routes browser navigation back to React Router. |
+| **Backend** | **Render** | Runs the Spring Boot API using the repository's Dockerfile. |
+| **Database** | **Neon** | Hosts the PostgreSQL database used by the backend. |
+
+The public landing page renders without backend API requests. Signing in and using application features requires the Render API. Database access stays on the backend.
+
+### Hosting configuration
+
+[`netlify.toml`](netlify.toml) defines the frontend base directory (`frontend`), build command (`npm run build`), output directory (`dist`), Node.js 20 and the single-page-app fallback.
+
+| Service | Variable | Purpose |
+|---|---|---|
+| Netlify | `VITE_API_BASE_URL` | Public Render API base URL, including `/api`. Vite embeds it during the build. |
+| Render | `SPRING_DATASOURCE_URL` | Neon PostgreSQL JDBC connection URL with the required SSL settings. |
+| Render | `SPRING_DATASOURCE_USERNAME` | Neon database username. |
+| Render | `SPRING_DATASOURCE_PASSWORD` | Neon database password; configure through the hosting environment. |
+| Render | `CORS_ALLOWED_ORIGINS` | Allowed frontend origin, including `https://tiqnest.netlify.app`. |
+| Render | `PORT` | Runtime port supplied by the hosting platform. |
+| Render | `ANTHROPIC_API_KEY` | Optional server-side key for TiqVision's AI integration. |
+| Render | `ANTHROPIC_MODEL` | Provider model identifier available to the configured account. |
+| Render | `TIQNEST_DEMO_FIXTURES` | Optional, explicitly labeled triage demo fixtures; disabled by default. |
+
+Changing a frontend environment variable requires a new frontend build. Keep actual infrastructure credentials and AI keys in hosting settings or ignored local environment files. The public demo passwords above are application test accounts, not infrastructure credentials.
+
+See [`docs/deployment.md`](docs/deployment.md) for the deployment walkthrough and troubleshooting.
+
+## Technology
+
+| Area | Stack |
+|---|---|
+| Interface | React 18, TypeScript, React Router, Bootstrap / React Bootstrap, custom CSS |
+| Frontend tooling | Vite, npm |
+| API | Java 21, Spring Boot, Spring Data JPA |
+| Java tooling | Gradle wrapper, MapStruct, Lombok |
+| Persistence | PostgreSQL; H2 for backend tests |
+| Local infrastructure | Docker Compose, PostgreSQL 16, pgAdmin |
+| Hosting | Netlify, Render, Neon |
+
+## Routes and access
+
+| Route | Page | Access |
+|---|---|---|
+| `/` | Public landing page | Everyone |
+| `/login` | Sign in | Everyone |
+| `/home` | Authenticated homepage | Signed-in users |
+| `/tickets` | Tickets | Signed-in users |
+| `/fix` | TiqFix | Signed-in users |
+| `/vision` | TiqVision | Signed-in users |
+| `/dashboard` | Admin dashboard | Administrators |
+| `/users` | User management | Administrators |
+
+Successful login opens `/home`. Landing-page calls to action send returning employees to `/home` and administrators to `/dashboard`. The public landing and login pages do not show the authenticated navbar or outage banner.
+
+## Run locally
+
+**Prerequisites:** Git, Node.js 20 or newer, Java 21 and Docker Desktop. The Gradle wrapper is included.
+
+### 1. Clone
+
+```bash
+git clone https://github.com/ArushiNaik/TIQNest.git
+cd TIQNest
+```
+
+Optionally copy `.env.example` to `.env` for Docker Compose settings:
+
+```bash
+cp .env.example .env
+```
+
+PowerShell equivalent: `Copy-Item .env.example .env`. When running Spring directly, export any customized settings into the process environment; copying a Compose `.env` file alone does not configure every process.
+
+### 2. Start the database and backend
+
+```bash
+docker compose up -d
+./gradlew :backend:bootRun
+```
+
+On Windows, use `./gradlew.bat :backend:bootRun`.
+
+Alternatively, run the backend and database together in Docker:
 
 ```bash
 docker compose --profile app up -d --build
 ```
 
-Stop the IntelliJ run first, because both use port 8080. The API runs on http://localhost:8080.
+Choose one backend option to avoid competing processes on port 8080.
 
-Run the tests (in-memory H2 database, no Docker needed):
+| Local service | Address |
+|---|---|
+| Backend API | `http://localhost:8080/api` |
+| PostgreSQL | `localhost:5434`, database `ItHelpDesk` by default |
+| pgAdmin | `http://localhost:9000` |
 
-```bash
-./gradlew :backend:test
-```
+For pgAdmin's connection to the Compose database, use host `db` and port `5432`. Local credentials and overrides are documented in `.env.example` and `docker-compose.yml`.
 
-### 4. Run the frontend
+### 3. Start the frontend
+
+In a separate terminal:
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
-The app runs on http://localhost:5173.
+Open **http://localhost:5173**. The frontend defaults to `http://localhost:8080/api`. To use another backend, set `VITE_API_BASE_URL` in a local Vite environment file or process environment and restart Vite.
 
-> 💡 If you change the database schema, recreate the database with `docker compose down -v` and start it again.
+The database seed defines the demo accounts listed above. PostgreSQL data persists in the Docker volume across ordinary restarts.
 
-## 👤 Demo accounts
+### 4. Build and test
 
-| Role | Email | Password |
+From the repository root:
+
+```bash
+npm --prefix frontend run build
+./gradlew :backend:test
+```
+
+On Windows, use `./gradlew.bat :backend:test`. Backend tests use the H2 test profile and do not call the real AI provider.
+
+To preview the production frontend build:
+
+```bash
+npm --prefix frontend run preview
+```
+
+Frontend builds and focused browser checks were completed for the landing-page and dismiss-button changes. These checks do not substitute for a full live backend integration test.
+
+## API overview
+
+Application endpoints require `Authorization: Bearer <token>`, except login. Role and ownership rules apply to protected operations.
+
+| Method | Endpoint | Purpose |
 |---|---|---|
-| Admin | `Christine@demo.com` | `pwd` |
-| Employee | `Bahman@demo.com` | `pwd` |
-| Employee | `Amin@demo.com` | `pwd` |
+| `POST` | `/api/auth/login` | Authenticate and return session information |
+| `GET` | `/api/auth/me` | Read the current user |
+| `POST` | `/api/auth/logout` | End the session |
+| `GET`, `POST` | `/api/tickets` | List or create tickets |
+| `GET` | `/api/tickets/queue` | View the support queue |
+| `GET`, `PATCH` | `/api/tickets/{id}` | Read or update a ticket |
+| `GET` | `/api/tickets/{id}/history` | Read the ticket's audit history |
+| `GET` | `/api/incidents/active` | Read active incidents |
+| `PATCH` | `/api/incidents/{id}/resolve` | Resolve an incident |
+| `GET` | `/api/sla/summary`, `/api/sla/alerts` | Read SLA information |
+| `GET` | `/api/remediations/catalog` | Browse troubleshooting remedies |
+| `POST` | `/api/remediations/recommend` | Request remedy recommendations |
+| `GET`, `POST` | `/api/remediations/attempts` | Read or record troubleshooting attempts |
+| `GET` | `/api/triage/status` | Check triage availability |
+| `POST` | `/api/triage/classify`, `/api/triage/analyze` | Text classification or multipart evidence analysis |
 
-## 🔌 API overview
-
-All endpoints except login need the header `Authorization: Bearer <token>`.
-
-| Method | Path | Purpose |
-|---|---|---|
-| `POST` | `/api/auth/login` | Log in, returns a token and the user |
-| `GET` | `/api/auth/me` | Current user |
-| `POST` | `/api/auth/logout` | Log out |
-| `GET`, `POST` | `/api/tickets` | List and create tickets |
-| `PATCH` | `/api/tickets/{id}` | Update status or assignee |
-| `GET` | `/api/incidents` | Incidents with affected counts |
-| `GET` | `/api/tickets/{id}/history` | Ticket timeline |
-
-<details>
-<summary>Example: log in with curl</summary>
+Example using a seeded account against the local backend:
 
 ```bash
 curl -X POST http://localhost:8080/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@demo.com","password":"pwd"}'
+  -d '{"email":"Christine@demo.com","password":"pwd"}'
 ```
 
-</details>
+## Repository map
 
-## 📁 Project structure
-
-```
-.
-├── backend/              Spring Boot API (Java 21)
-│   └── src/main/java/com/konate/ithelpdesk/
-│       ├── user/         login and users
-│       ├── ticket/       tickets
-│       ├── incident/     incident clustering
-│       ├── sla/          deadlines and timers
-│       ├── audit/        change history
-│       └── config/       CORS, auth filter
-├── frontend/             React app (Vite + TypeScript)
-├── docs/                 banner, logo and screenshots
-├── settings.gradle       Gradle root, includes backend/
-├── gradlew               Gradle wrapper (run from the repo root)
-├── Dockerfile            builds the backend into an image
-├── docker-compose.yml    PostgreSQL, pgAdmin and the app
-├── .env.example          copy to .env for local settings
-└── README.md
+```text
+TIQNest/
+├── frontend/
+│   └── src/
+│       ├── pages/          Landing, login, tickets, TiqFix, TiqVision, operations
+│       ├── services/       API configuration and session helpers
+│       ├── types/          Shared frontend models
+│       └── App.tsx         Public routes and access guards
+├── backend/
+│   └── src/
+│       ├── main/           Java API, application configuration and seed data
+│       └── test/           Backend tests
+├── docs/                   Deployment and project documentation
+├── Dockerfile              Backend container build
+├── docker-compose.yml      Local database, pgAdmin and optional backend
+├── netlify.toml            Frontend build and SPA redirects
+├── .env.example            Local environment template
+└── gradlew / gradlew.bat    Gradle wrappers
 ```
 
-## 🤝 Team workflow
+Backend features are organized around users, tickets, incidents, SLA, audit history, remediation and triage.
 
-- `main` always runs. Don't push broken code to it.
-- One feature per branch: `feature/<name>`, then a pull request with one review.
-- Pull from `main` before starting new work.
-- Never commit passwords or API keys. Use environment variables or a local `.env` file.
+## Project scope and next steps
 
-## 👥 Team
- 
-**Malick Konate**, **Ilian Adeleke**, **Arushi Naik** and **Jacky Bolap**.
- 
+Tiqnest is a hackathon portfolio project with a public demo. Shared test data can change, and the demo accounts are intentionally discoverable. TiqVision remains a prototype until its provider configuration and deployed analysis flow are verified.
+
+Potential next steps include stronger production account management, broader end-to-end coverage, validated screenshot triage and continued accessibility testing.
+
+## The people behind Tiqnest
+
+**Ilian Adeleke · Arushi Naik · Malick Konate · Jacky Bolap**
+
+Built at Hackathon Concordia to reimagine everyday IT support.
+
 ---
 
-<p align="center">
-<img width="552" height="151" alt="image" src="https://github.com/user-attachments/assets/a5770688-9597-4271-97f1-cda336307ddd" />
-  <p></p>
-  <p align="center">Built in one day at <b>HackDécouverte 2026</b> 🚀</p>
-</p>
+<div align="center">
+
+**Less confusion. Faster troubleshooting. Better visibility.**
+
+[**Take Tiqnest for a spin ↗**](https://tiqnest.netlify.app/login)
+
+</div>

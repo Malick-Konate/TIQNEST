@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import type { ReactElement } from 'react';
 import HelpDeskNavBar from './NavBar';
 import HomePage from './pages/HomePage';
+import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import TicketPage from './pages/TicketPage';
 import UserPage from './pages/UserPage';
@@ -22,15 +23,15 @@ function RequireAdmin({ children }: { children: ReactElement }) {
 
 function AppContent() {
     const location = useLocation();
-    const isLoginPage = location.pathname === '/login';
+    const isPublicPage = location.pathname === '/' || location.pathname === '/login';
 
     return (
         <div className="App">
-            {!isLoginPage && <HelpDeskNavBar />}
-            {!isLoginPage && getCurrentUser() && <OutageBanner />}
+            {!isPublicPage && <HelpDeskNavBar />}
+            {!isPublicPage && getCurrentUser() && <OutageBanner />}
 
             <Routes>
-                <Route path="/" element={<Navigate to="/home" />} />
+                <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/home" element={<RequireLogin><HomePage /></RequireLogin>} />
                 <Route path="/tickets" element={<RequireLogin><TicketPage /></RequireLogin>} />

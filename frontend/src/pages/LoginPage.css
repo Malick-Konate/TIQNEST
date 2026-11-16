@@ -162,3 +162,6 @@
     25% { transform: translateX(-6px); }
     75% { transform: translateX(6px); }
 }
+
+.login-back { display: inline-block; margin-bottom: 24px; font-size: .8rem; color: var(--cream); text-decoration: none; }
+.login-back:focus-visible { outline: 3px solid var(--pink); outline-offset: 5px; }

@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ApiRequestError, postData } from '../services/api-services';
 import { saveSession } from '../services/auth';
 import { API_URL_LOGIN } from '../services/config';
@@ -37,6 +37,7 @@ export default function LoginPage() {
     return (
         <div className="login-page">
             <div className="login-form">
+                <Link to="/" className="login-back">← Back to homepage</Link><br />
                 <h2>🛠️ TIQNest</h2>
                 <p className="login-subtitle">Sign in to report a problem or check your tickets</p>
                 {error && <div className="error-message">{error}</div>}
